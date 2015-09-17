@@ -9,7 +9,7 @@ git::logger() {
 git::logger::list() {
   local history_file="${GIT_LOGGER_LOCATION:-$HOME}/.git_history"
 
-  awk -v root=$(git::root_dir) '$2=root&&$3=0,$0' "${history_file}"|uniq
+  awk -v root=$(git::root_dir) '$2==root&&$3==0{print substr($0,index($0,$4))}' "${history_file}"|uniq
 }
 
 git::root_dir() {
