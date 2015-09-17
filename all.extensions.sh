@@ -1,7 +1,7 @@
 # this fixes for me
 
-export BREW_LOGGER_LOCATION=$(common::init_location)
-export GIT_LOGGER_LOCATION=$(common::init_location)
+export BREW_LOGGER_LOCATION="${EXTENSIONS_HOME}"
+export GIT_LOGGER_LOCATION="${EXTENSIONS_HOME}"
 
-source brew.extensions.sh
-source git.extensions.sh
+source "${EXTENSIONS_HOME}/brew.extensions.sh"
+source "${EXTENSIONS_HOME}/git.extensions.sh"
