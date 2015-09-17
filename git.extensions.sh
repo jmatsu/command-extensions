@@ -1,8 +1,15 @@
 git::logger() {
   local history_file="${GIT_LOGGER_LOCATION:-$HOME}/.git_history"
 
-  echo "$(date +%s) $(git::root_dir) git $@" >> "${history_file}"
   command git "$@"
+
+  echo "$(date +%s) $(git::root_dir) $? git $@" >> "${history_file}"
+}
+
+git::logger::list() {
+  local history_file="${GIT_LOGGER_LOCATION:-$HOME}/.git_history"
+
+  awk -v root=$(git::root_dir) '$2=root&&$3=0,$0' "${history_file}"|uniq
 }
 
 git::root_dir() {
