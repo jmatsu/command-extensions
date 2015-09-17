@@ -69,3 +69,5 @@ brew::export::select() {
 
   trap 1 2 3 15
 }
+
+alias brew=brew::logger
