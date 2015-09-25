@@ -3,7 +3,11 @@ git::logger() {
 
   command git "$@"
 
-  echo "$(date +%s) $(git::root_dir) $? git $@" >> "${history_file}"
+  local status=$?
+
+  echo "$(date +%s) $(git::root_dir) ${status} git $@" >> "${history_file}"
+
+  exit $?
 }
 
 git::logger::list() {

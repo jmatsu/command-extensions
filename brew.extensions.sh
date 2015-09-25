@@ -4,9 +4,13 @@ brew::logger() {
   echo "$(date +%s) brew $@" >> "${history_file}"
   command brew "$@"
 
+  local status=$?
+
   # Compress each of sequences which are continuous executed commands
   cat "${history_file}"|tail -r|uniq -f1|tail -r > "${history_file}.backup"
   mv -f "${history_file}.backup" "${history_file}"
+
+  exit $status
 }
 
 brew::check_command() {
